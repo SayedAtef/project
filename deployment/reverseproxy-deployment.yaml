@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reverseproxy
-  namespace: default
   labels:
-    app: reverseproxy
+    service: reverseproxy
+  name: reverseproxy
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: reverseproxy
+  replicas: 1
   template:
     metadata:
       labels:
+        service: reverseproxy
         app: reverseproxy
     spec:
       containers:
-        - name: reverseproxy
-          image: sayedatef/reverseproxy
+        - image: sayedatef/reverseproxy:v1
+          name: reverseproxy
           imagePullPolicy: Always
           resources:
             requests:
